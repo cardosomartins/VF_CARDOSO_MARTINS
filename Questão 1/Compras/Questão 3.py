@@ -65,11 +65,11 @@ for line in dados:
                 print("Preço_1:"+str(preço_1)+'\n')
                 print("Preço 2:"+str(preço_2)+'\n')
                 l=open("DIVERGENCIAS_DE_PRECO",'a')
-                l.write(nome_1+','+str(preço_1)+','+data_1+nome_2+','+str(preço_2)+','+data_2+'\n')
+                l.write(nome_1+','+str(preço_1)+','+data_1+nome_2+','+str(preço_2)+','+data_2)
                 l.close()
             if (preço_2/1.25>preço_1 and nome_1 == nome_2):
                 l = open("DIVERGENCIAS_DE_PRECO", 'a')
-                l.write(nome_1+','+str(preço_1)+','+data_1+nome_2+','+str(preço_2)+','+data_2+'\n') 
+                l.write(nome_1+','+str(preço_1)+','+data_1+nome_2+','+str(preço_2)+','+data_2) 
                 l.close() 
 
     contador_auxiliar = -1
@@ -78,8 +78,17 @@ h.close()
 
 
 m = open('DIVERGENCIAS_DE_PRECO', 'r')
-n = open('TODOS_ARQUIVOS_COM_DATA', 'r')
-    
+o = open('RELATORIO', 'a+')
+data_o = o.readlines()
+data_m = m.readlines() 
+for line_m in data_m:
+    linha_m = line_m.split(',')
+    for line_o in data_o:
+        linha_o = line_o.split(',')
+        if linha_m[0] == linha_o[0]:
+            o.write(linha_m[1]+','+linham[2])
+        if linha_m[0] != linha_o[0]:
+           o.write(linha_m[0]+','+linha_m[1]+','+linham[2])
 
 m.close()
-n.close()
+o.close()
